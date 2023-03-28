@@ -1,0 +1,1033 @@
+<!DOCTYPE html>
+<!-- saved from url=(0045)https://my.boisestate.edu/#/student/academics -->
+<html ng-app="myBoiseState" ng-controller="AppCtrl as app" ng-csp="" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" class="ng-scope"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title ng-bind="pageTitle" class="ng-binding">myBoiseState | Student</title>
+    
+    <!--force IE 11 rendering edge mode-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!--google domain verification tag-->
+    <meta name="google-site-verification" content="REAUrgFgpyTomD4YUx39HefQO6IYHA-rEz9ydI9dhbk">
+    <!--google seo tags-->
+    <meta name="description" content="myBoiseState provides single sign-on access to Boise State University&#39;s systems and services. Students, faculty and staff can log in with their current Boise State username and password.">
+    <!-- social media tags -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@boisestatelive">
+    <meta name="twitter:title" content="BoiseState">
+    <meta name="twitter:description" content="">
+    <meta name="twitter:image:src" content="">
+    <meta property="og:title" content="myBoiseState">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="http://my.boisestate.edu">
+    <meta property="og:image" content="">
+    <meta property="og:description" content="">
+    <!--<base href="/">--><base href=".">
+
+    <!-- iOS smart banner -->
+    <meta name="apple-itunes-app" content="app-id=959007690">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="shortcut icon" href="https://my.boisestate.edu/assets/images/icons/favicon.ico" type="image/vnd.microsoft.icon">
+    <link rel="stylesheet" type="text/css" href="./HTML Assignment-2_files/css">
+</head>
+<body>
+    <!--Navigation-->
+    <!-- ngIf: app.state.current.name !== 'splash' --><div ng-if="app.state.current.name !== &#39;splash&#39;">
+    <nav role="navigation">
+        <div class="hidden-sm hidden-xs top-header">
+            <div class="container">
+                <a accessibility-current-view="" class="large-logo" ui-scrollfix="45" style="position: absolute; z-index: 1001;" ui-sref="home" tabindex="1" href="https://my.boisestate.edu/#/home">
+                    <img style="margin-top: 20px;" class="hidden-sm hidden-xs" alt="my dot boisestate dot EDU Home" src="./HTML Assignment-2_files/nav-logo.png" height="60px">
+                </a>
+            </div>
+        </div>
+        <!-- ngIf: vm.emulationMode -->
+        <div ui-scrollfix="45" class="navbar navbar-inverse navbar-fixed-top" style="z-index: 1000;">
+            <div class="container">
+                <div class="navbar-header">
+                    <a accessibility-current-view="" ui-scrollfix="50" class="navbar-brand" ui-sref="home" ng-click="vm.menuCollapsed = true" tabindex="1" href="https://my.boisestate.edu/#/home">
+                        <img alt="my dot boisestate dot EDU Home" src="./HTML Assignment-2_files/nav-logo-small.png" height="30px">
+                    </a>
+                    <button aria-label="Main menu" type="button" class="navbar-toggle" ng-click="vm.menuCollapsed = !vm.menuCollapsed" aria-haspopup="true" aria-expanded="false">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <div style="display: none;" id="current">Current view</div>
+                <!-- RESPONSIVE COLLAPSE AREA -->
+                <div class="navbar-collapse collapse" uib-collapse="vm.menuCollapsed" aria-expanded="false" aria-hidden="true" style="height: 0px;">
+                    <ul class="nav navbar-nav navbar-right">
+                        <!-- ngIf: app.currentUser && app.checkUserRoles(['STUDENT']) --><li ng-if="app.currentUser &amp;&amp; app.checkUserRoles([&#39;STUDENT&#39;])" ng-class="{&#39;active&#39;: app.state.includes(&#39;student&#39;)}" class="ng-scope active" style="">
+                            <a accessibility-current-view="" href="https://my.boisestate.edu/#/student/academics" aria-label="Student view" class="oswald" ui-sref="student.academics" ng-click="vm.menuCollapsed = true">
+                                <i class="fa fa-graduation-cap"></i> Student
+                            </a>
+                        </li><!-- end ngIf: app.currentUser && app.checkUserRoles(['STUDENT']) -->
+                        <!-- ngIf: app.currentUser && app.checkUserRoles(['EMPLOYEE']) -->
+                        <!-- ngIf: !app.currentUser -->
+                        <!-- ngIf: app.currentUser --><li ng-if="app.currentUser" class="btn-group ng-scope dropdown" uib-dropdown="" uib-keyboard-nav="" style="margin-left: 10px;">
+                            <button id="user" type="button" class="btn btn-user btn-block oswald dropdown-toggle" aria-label="Rhys Vickers main menu" uib-dropdown-toggle="" aria-haspopup="true" aria-expanded="false">
+                                <span class="ng-binding">Rhys Vickers <i aria-hidden="true" class="fa fa-caret-down"></i></span>
+                            </button>
+                            <ul role="menu" class="dropdown-menu scroll-menu small-noscroll">
+                                <li aria-hidden="true" role="presentation" class="dropdown-header">Profile:</li>
+                                <li role="menuitem">
+                                    <a href="https://my.boisestate.edu/" ng-click="app.openLogoutModal()" class="oswald" id="logOutButton">
+                                        <i aria-hidden="true" class="fa fa-sign-out"></i> Log Out
+                                    </a>
+                                </li>
+                                <li role="menuitem">
+                                    <a target="_blank" href="https://www.boisestate.edu/oit-myboisestate/" class="oswald ng-binding">
+                                        <i aria-hidden="true" class="fa fa-question-circle"></i> myBoiseState Help
+                                    </a>
+                                </li>
+                                <li role="menuitem">
+                                    <a target="_blank" ng-href="https://weblogin.boisestate.edu/adfs/portal/updatepassword/" class="oswald ng-binding" href="https://weblogin.boisestate.edu/adfs/portal/updatepassword/">
+                                        <i aria-hidden="true" class="fa fa-lock"></i> Change Password
+                                    </a>
+                                </li>
+                                <li ui-sref-active="active" role="menuitem">
+                                    <a accessibility-current-view="" aria-label="Security" ui-sref="security" class="oswald" href="https://my.boisestate.edu/#/security">
+                                        <i aria-hidden="true" class="fa fa-shield"></i> Security
+                                    </a>
+                                </li>
+                                <!-- ngIf: app.currentUser.RoleSpecificLinks.length -->
+                                <!-- ngRepeat: roleLink in app.currentUser.RoleSpecificLinks track by $index -->
+                                <!-- ngRepeat: (view, menuItemGroup) in app.currentUser.ViewSpecificLinks --><span ng-repeat="(view, menuItemGroup) in app.currentUser.ViewSpecificLinks" class="ng-scope">
+                                    <li aria-hidden="true" role="presentation" class="divider"></li>
+                                    <li aria-hidden="true" role="presentation" class="dropdown-header ng-binding">STUDENT Services:</li>
+                                    <!-- ngRepeat: menuItem in menuItemGroup track by $index --><li role="menuitem" ng-repeat="menuItem in menuItemGroup track by $index" ui-sref-active="active" class="ng-scope">
+                                        <!-- ngIf: menuItem.Target === '_self' -->
+                                        <!-- ngIf: menuItem.Target === '_blank' --><a class="oswald ng-binding ng-scope" ng-if="menuItem.Target === &#39;_blank&#39;" target="_blank" ng-href="https://mail.google.com/a/u.boisestate.edu" href="https://mail.google.com/a/u.boisestate.edu"><i aria-hidden="true" class="fa fa-google"></i> BroncoMail (Google Workspace)</a><!-- end ngIf: menuItem.Target === '_blank' -->
+                                    </li><!-- end ngRepeat: menuItem in menuItemGroup track by $index --><li role="menuitem" ng-repeat="menuItem in menuItemGroup track by $index" ui-sref-active="active" class="ng-scope">
+                                        <!-- ngIf: menuItem.Target === '_self' -->
+                                        <!-- ngIf: menuItem.Target === '_blank' --><a class="oswald ng-binding ng-scope" ng-if="menuItem.Target === &#39;_blank&#39;" target="_blank" ng-href="https://boisestatecanvas.instructure.com/login/openid_connect" href="https://boisestatecanvas.instructure.com/login/openid_connect"><i aria-hidden="true" class="fa fa-mortar-board"></i> Canvas</a><!-- end ngIf: menuItem.Target === '_blank' -->
+                                    </li><!-- end ngRepeat: menuItem in menuItemGroup track by $index --><li role="menuitem" ng-repeat="menuItem in menuItemGroup track by $index" ui-sref-active="active" class="ng-scope">
+                                        <!-- ngIf: menuItem.Target === '_self' -->
+                                        <!-- ngIf: menuItem.Target === '_blank' --><a class="oswald ng-binding ng-scope" ng-if="menuItem.Target === &#39;_blank&#39;" target="_blank" ng-href="https://cs-prod.boisestate.edu/psc/CPRD_25/EMPLOYEE/SA/c/NUI_FRAMEWORK.PT_LANDINGPAGE.GBL?Page=PT_LANDINGPAGE&amp;Action=U&amp;LP=BSU_SS_HOMEPAGE2" href="https://cs-prod.boisestate.edu/psc/CPRD_25/EMPLOYEE/SA/c/NUI_FRAMEWORK.PT_LANDINGPAGE.GBL?Page=PT_LANDINGPAGE&amp;Action=U&amp;LP=BSU_SS_HOMEPAGE2"><i aria-hidden="true" class="fa fa-mortar-board"></i> Student Center</a><!-- end ngIf: menuItem.Target === '_blank' -->
+                                    </li><!-- end ngRepeat: menuItem in menuItemGroup track by $index --><li role="menuitem" ng-repeat="menuItem in menuItemGroup track by $index" ui-sref-active="active" class="ng-scope">
+                                        <!-- ngIf: menuItem.Target === '_self' -->
+                                        <!-- ngIf: menuItem.Target === '_blank' --><a class="oswald ng-binding ng-scope" ng-if="menuItem.Target === &#39;_blank&#39;" target="_blank" ng-href="https://engage.boisestate.edu/" href="https://engage.boisestate.edu/"><i aria-hidden="true" class="fa fa-university"></i> Engage</a><!-- end ngIf: menuItem.Target === '_blank' -->
+                                    </li><!-- end ngRepeat: menuItem in menuItemGroup track by $index --><li role="menuitem" ng-repeat="menuItem in menuItemGroup track by $index" ui-sref-active="active" class="ng-scope">
+                                        <!-- ngIf: menuItem.Target === '_self' -->
+                                        <!-- ngIf: menuItem.Target === '_blank' --><a class="oswald ng-binding ng-scope" ng-if="menuItem.Target === &#39;_blank&#39;" target="_blank" ng-href="https://www.boisestate.edu/library/" href="https://www.boisestate.edu/library/"><i aria-hidden="true" class="fa fa-book"></i> Library</a><!-- end ngIf: menuItem.Target === '_blank' -->
+                                    </li><!-- end ngRepeat: menuItem in menuItemGroup track by $index -->
+                                    <li ui-sref-active="active" role="menuitem">
+                                        <a accessibility-current-view="" class="oswald ng-binding" aria-label="Edit my services" ui-sref="resources({ view: &#39;STUDENT&#39; })" href="https://my.boisestate.edu/#/resources?view=STUDENT"><i aria-hidden="true" class="fa fa-pencil-square-o"></i> Edit STUDENT Services</a>
+                                    </li>
+                                </span><!-- end ngRepeat: (view, menuItemGroup) in app.currentUser.ViewSpecificLinks -->
+                            </ul>
+                        </li><!-- end ngIf: app.currentUser -->
+                    </ul>
+                    <search><form class="navbar-form navbar-right ng-pristine ng-valid" role="search">
+    <div class="input-group" role="search" style="margin-right: 10px;">
+        <input ng-model="vm.searchCriteria" id="header-resources-input" aria-label="Search Input" aria-autocomplete="list" autocomplete="off" tabindex="2" uib-typeahead="resource.Title for resource in vm.resources | filter:$viewValue | limitTo:8" typeahead-on-select="vm.resourceSelect($item, $modal, $label)" typeahead-focus-first="false" type="text" class="form-control ng-pristine ng-untouched ng-valid" placeholder="Search..." aria-expanded="false" aria-owns="typeahead-6-6158" aria-invalid="false"><ul class="dropdown-menu ng-isolate-scope ng-hide" ng-show="isOpen() &amp;&amp; !moveInProgress" ng-style="{top: position().top+&#39;px&#39;, left: position().left+&#39;px&#39;}" role="listbox" aria-hidden="true" uib-typeahead-popup="" id="typeahead-6-6158" matches="matches" active="activeIdx" select="select(activeIdx, evt)" move-in-progress="moveInProgress" query="query" position="position" assign-is-open="assignIsOpen(isOpen)" debounce="debounceUpdate">
+    <!-- ngRepeat: match in matches track by $index -->
+</ul>
+        <div class="input-group-btn">
+            <button class="btn btn-warning" type="submit" aria-label="Submit search" ng-click="vm.gotoSearchResults()" tabindex="3"><i class="fa fa-search"></i></button>
+        </div>
+    </div>
+</form>
+</search>
+                </div>
+            </div>
+        </div>
+    </nav>
+</div><!-- end ngIf: app.state.current.name !== 'splash' -->
+    <!--Main View-->
+    <!-- uiView: main --><div ui-view="main" autoscroll="true" role="main" id="page" class="ng-scope" style=""><div class="jumbotron student-jumbotron ng-scope" style="background-image: url(&#39;../assets/images/student/jumbotron.jpg&#39;)">
+    <div class="container">
+        <div class="student-profile col-xs-12 col-sm-8 col-md-6">
+            <div class="row">
+                <!-- ngIf: vm.pictureUrl --><img ng-src="https://lh3.googleusercontent.com/a/AEdFTp4oBitILNXyjktGdsXEXBuSouJLs1sk3JuYkC4X=s100" ng-if="vm.pictureUrl" class="pull-left hidden-xs ng-scope" alt="Student Picture" src="./HTML Assignment-2_files/unnamed.png" style=""><!-- end ngIf: vm.pictureUrl -->
+                <!-- ngIf: !vm.pictureUrl -->
+                <div class="pull-left" style="margin-left: 10px;">
+                    <div class="student-name" id="StudentUserName">
+                        <h1 class="ng-binding">Rhys Vickers</h1>
+                    <a id="test" ui-sref="student.account" ng-click="vm.activeTab = 2" href="https://my.boisestate.edu/#/student/account">
+                        <!-- ngIf: vm.holdsCount > 0 || vm.todosCount > 0 --><span ng-if="vm.holdsCount &gt; 0 || vm.todosCount &gt; 0" uib-tooltip="Account items require your attention" tooltip-class="customClass" aria-label="Warning! You have account holds or todos" style="font-size: 0.5em;" class="fa fa-exclamation-triangle ng-scope"></span><!-- end ngIf: vm.holdsCount > 0 || vm.todosCount > 0 -->
+                    </a>
+                    </div>
+                    <!-- ngRepeat: career in vm.careers --><div ng-repeat="career in vm.careers" class="ng-scope" style="">
+                        <!-- ngRepeat: (type, plans) in career.Plans --><span ng-repeat="(type, plans) in career.Plans" class="ng-scope">
+                            <!-- ngRepeat: plan in plans --><span ng-repeat="plan in plans" style="font-size: 1.0em;" class="ng-binding ng-scope">
+                                Integrated Media and Strategic<!-- ngIf: !$last -->
+                            </span><!-- end ngRepeat: plan in plans -->
+                        </span><!-- end ngRepeat: (type, plans) in career.Plans -->
+                    </div><!-- end ngRepeat: career in vm.careers -->
+                </div>
+            </div>
+
+            <div>
+                <!-- ngRepeat: appointment in vm.enrollmentAppts | orderBy: AppointmentStart -->
+            </div>
+        </div>
+
+    </div>
+    <!--
+    <div style="float:right;color:gray;padding-right:10px;">
+        <a ui-sref="settings" style="color:gray"><i class="fa fa-cog fa-lg"></i> </a>
+    </div>
+    -->
+</div>
+<!--
+NOTE: the 'active' attribute of 'tab' directive can't evaluate an expression. This is a work around until
+that is fixed. https://github.com/angular-ui/bootstrap/issues/611
+Ideally this would be handled as:  <tab active="vm.state.current.name === 'student.account'">
+-->
+<section class="container student-container ng-scope">
+  <div class="col-md-8 col-xs-12">
+      <div active="vm.activeTab" justified="true" class="ng-isolate-scope">
+  <ul class="nav nav-tabs nav-justified" ng-class="{&#39;nav-stacked&#39;: vertical, &#39;nav-justified&#39;: justified}" ng-transclude="">
+          <li ng-class="[{active: active, disabled: disabled}, classes]" class="uib-tab nav-item ng-isolate-scope active" ui-sref="student.academics" href="#/student/academics">
+  <a href="https://my.boisestate.edu/" ng-click="select($event)" class="nav-link ng-binding" uib-tab-heading-transclude=""><uib-tab-heading class="ng-scope">
+                  <h2>My Academics</h2>
+                  <!-- ngIf: vm.degreeOffTrack === true -->
+                  <span class="sr-only sr-only-focusable">account warnings</span>
+                  <!-- ngIf: vm.active.academics -->
+                  <!-- ngIf: !vm.active.academics --><span ng-if="!vm.active.academics" class="sr-only sr-only-focusable ng-scope">Inactive Tab</span><!-- end ngIf: !vm.active.academics -->
+              </uib-tab-heading></a>
+</li>
+          <li ng-class="[{active: active, disabled: disabled}, classes]" class="uib-tab nav-item ng-isolate-scope" ui-sref="student.schedule" href="#/student/schedule">
+  <a href="https://my.boisestate.edu/" ng-click="select($event)" class="nav-link ng-binding" uib-tab-heading-transclude=""><uib-tab-heading class="ng-scope">
+                  <h2>My Schedule</h2>
+                  <!-- ngIf: vm.active.schedule -->
+                  <!-- ngIf: !vm.active.schedule --><span ng-if="!vm.active.schedule" class="sr-only sr-only-focusable ng-scope">Inactive Tab</span><!-- end ngIf: !vm.active.schedule -->
+              </uib-tab-heading></a>
+</li>
+          <li ng-class="[{active: active, disabled: disabled}, classes]" class="uib-tab nav-item ng-isolate-scope" ui-sref="student.account" id="myAccountTab" href="#/student/account">
+  <a href="https://my.boisestate.edu/" ng-click="select($event)" class="nav-link ng-binding" uib-tab-heading-transclude=""><uib-tab-heading class="ng-scope">
+                  <h2>My Account</h2>
+                  <!-- ngIf: (vm.holdsCount + vm.todosCount) > 0 --><span class="badge ng-binding ng-scope" ng-if="(vm.holdsCount + vm.todosCount) &gt; 0" style="">2</span><!-- end ngIf: (vm.holdsCount + vm.todosCount) > 0 -->
+                  <span class="sr-only sr-only-focusable">account warnings</span>
+                  <!-- ngIf: vm.active.account -->
+                  <!-- ngIf: !vm.active.account --><span ng-if="!vm.active.account" class="sr-only sr-only-focusable ng-scope">Inactive Tab</span><!-- end ngIf: !vm.active.account -->
+              </uib-tab-heading></a>
+</li>
+          <!--<tab active="vm.activateCourseSearchTab" heading="Course Search" ui-sref="student.courseSearch">-->
+              <!--<div ui-view="tab-course-search"></div>-->
+          <!--</tab>-->
+      </ul>
+  <div class="tab-content">
+    <!-- ngRepeat: tab in tabset.tabs --><div class="tab-pane ng-scope active" ng-repeat="tab in tabset.tabs" ng-class="{active: tabset.active === tab.index}" uib-tab-content-transclude="tab">
+    
+              
+              <!-- uiView: tab-my-academics --><div ui-view="tab-my-academics" class="ng-scope"><!--<div ng-if="vm.degreeOffTrack === true" class="well">-->
+    <!--<i style="font-size: 6em;" class="pull-left fa fa-exclamation-circle"></i>-->
+    <!--<span class="lead">Warning! Degree Progress Not On Track.</span>-->
+    <!--<p>Please contact your advisor or the Office of Advising and Academic Enhancement for more information.</p>-->
+<!--</div>-->
+
+<!-- ngRepeat: career in vm.careers --><!-- ngIf: vm.careers.length --><div ng-if="vm.careers.length" ng-repeat="career in vm.careers" class="well ng-scope" style="font-size: 1.4em;">
+     <p class="lead ng-binding">
+         Undergraduate Degree Seeking
+     </p>
+    <!-- ngRepeat: (type, plans) in career.Plans --><div ng-repeat="(type, plans) in career.Plans" class="ng-scope">
+        <div style="display:inline-block">
+            <span style="font-size: 0.8em;"><strong class="ng-binding">Major</strong></span>
+            <!-- ngRepeat: plan in plans --><span ng-repeat="plan in plans" class="ng-scope">
+                <div style="display:inline-block">
+                    <!--<div class="label label-default" style="font-size:.5em;position:relative;top:5px;left:10px;">{{plan.PendingPlan.ChangeType}}</div>-->
+                    <div>
+                        <a href="https://my.prod.boisestate.edu/student/academics" tooltip-popup-delay="500" uib-tooltip="Change Major" target="_blank" class="ng-binding">Integrated Media and Strategic</a><!-- ngIf: !$last -->
+                        <!-- ngIf: plan.PendingPlan -->
+                    </div>
+                    <div>
+
+                    </div>
+                </div>
+            </span><!-- end ngRepeat: plan in plans -->
+        </div>
+    </div><!-- end ngRepeat: (type, plans) in career.Plans -->
+
+    <div ng-show="vm.showAdmissionLetterButton &amp;&amp; $first" aria-hidden="true" class="ng-hide">
+        <hr style="border-color: darkgray">
+        <i class="fa fa-file-pdf-o"></i> <a id="admissionLetterButton" href="https://my.boisestate.edu/" ng-click="vm.downloadLetter()"><span class="pull-right"></span>Admission Decision Letter</a>
+    </div>
+</div><!-- end ngIf: vm.careers.length --><!-- end ngRepeat: career in vm.careers -->
+
+<!-- ngIf: vm.advisors.length --><div ng-if="vm.advisors.length" class="well ng-scope" style="font-size: 1.4em;">
+    <p class="lead">My Advisors</p>
+    <!-- ngRepeat: advisor in vm.advisors --><div ng-repeat="advisor in vm.advisors" class="my-advisors ng-scope">
+        <div style="font-size: 0.8em;display:inline-block;vertical-align: top;padding-top:5px;"><strong class="ng-binding">Integrated Media and Strategic </strong></div>
+        <uib-accordion close-others="oneAtATime" style="display:inline-block;font-size: 0.8em;" tooltip-popup-delay="500" uib-tooltip="Details"><div role="tablist" class="panel-group" ng-transclude="">
+            <div uib-accordion-group="" is-open="status.isFirstOpen" is-disabled="status.isFirstDisabled" class="ng-scope ng-isolate-scope panel"><div role="tab" id="accordiongroup-1208-3120-tab" aria-selected="" class="panel-heading" ng-keypress="toggleOpen($event)">
+  <h4 class="panel-title">
+    <a role="button" data-toggle="collapse" href="https://my.boisestate.edu/" aria-expanded="" aria-controls="accordiongroup-1208-3120-panel" class="accordion-toggle" ng-click="toggleOpen()" uib-accordion-transclude="heading" ng-disabled="isDisabled" uib-tabindex-toggle="" aria-disabled="false"><span uib-accordion-header="" ng-class="{&#39;text-muted&#39;: isDisabled}" class="ng-binding"><span class="ng-binding ng-scope">
+                    Tami Cox
+                    </span><!-- ngIf: status.isFirstOpen -->
+                    <!-- ngIf: !status.isFirstOpen --><span ng-if="!status.isFirstOpen" class="sr-only sr-only-focusable ng-scope">Advisor Info Collapsed</span><!-- end ngIf: !status.isFirstOpen -->
+                </span></a>
+  </h4>
+</div>
+<div id="accordiongroup-1208-3120-panel" aria-labelledby="accordiongroup-1208-3120-tab" aria-hidden="true" role="tabpanel" class="panel-collapse collapse" uib-collapse="!isOpen" aria-expanded="false" style="height: 0px;">
+  <div class="panel-body" ng-transclude="">
+                <uib-accordion-heading class="ng-scope"></uib-accordion-heading>
+                <div class="ng-binding ng-scope"><i class="fa fa-phone"></i> 208/426-2698</div>
+                <div class="ng-binding ng-scope"><i class="fa fa-envelope"></i> TamiCox@boisestate.edu</div>
+            </div>
+</div>
+</div>
+        </div></uib-accordion>
+    </div><!-- end ngRepeat: advisor in vm.advisors -->
+</div><!-- end ngIf: vm.advisors.length -->
+
+<div style="font-size: 1.4em;" class="list-group academics-links ng-scope">
+    <!-- ngRepeat: link in vm.myAcademicsLinks | orderBy:'Title' --><div ng-repeat="link in vm.myAcademicsLinks | orderBy:&#39;Title&#39;" class="ng-scope" style="">
+        <!-- ngIf: link.Target === '_self' --><a ng-if="link.Target === &#39;_self&#39;" ui-sref="academicCalendar" class="list-group-item ng-binding ng-scope" href="https://my.boisestate.edu/#/academic-calendar"><i class="fa fa-calendar"></i><span class="pull-right"></span> Academic Calendar </a><!-- end ngIf: link.Target === '_self' -->
+        <!-- ngIf: link.Target === '_blank' -->
+    </div><!-- end ngRepeat: link in vm.myAcademicsLinks | orderBy:'Title' --><div ng-repeat="link in vm.myAcademicsLinks | orderBy:&#39;Title&#39;" class="ng-scope">
+        <!-- ngIf: link.Target === '_self' -->
+        <!-- ngIf: link.Target === '_blank' --><a ng-if="link.Target === &#39;_blank&#39;" ng-href="https://www.boisestate.edu/aasc/" target="_blank" class="list-group-item ng-binding ng-scope" href="https://www.boisestate.edu/aasc/"><i class="fa fa-mortar-board"></i><span class="pull-right"></span> Advising &amp; Academic Support Center </a><!-- end ngIf: link.Target === '_blank' -->
+    </div><!-- end ngRepeat: link in vm.myAcademicsLinks | orderBy:'Title' --><div ng-repeat="link in vm.myAcademicsLinks | orderBy:&#39;Title&#39;" class="ng-scope" style="">
+        <!-- ngIf: link.Target === '_self' -->
+        <!-- ngIf: link.Target === '_blank' --><a ng-if="link.Target === &#39;_blank&#39;" ng-href="http://bsu.verbacompare.com/express?remote=1&amp;ref=2023&amp;term=Spring+2023&amp;dept=MEDIAPRO&amp;course=303&amp;section=001&amp;dept=PR&amp;course=351&amp;section=4001&amp;dept=MEDIA&amp;course=304&amp;section=4002&amp;dept=FILM&amp;course=360&amp;section=001&amp;dept=THEA&amp;course=340&amp;section=001&amp;getbooks=display+books" target="_blank" class="list-group-item ng-binding ng-scope" href="http://bsu.verbacompare.com/express?remote=1&amp;ref=2023&amp;term=Spring+2023&amp;dept=MEDIAPRO&amp;course=303&amp;section=001&amp;dept=PR&amp;course=351&amp;section=4001&amp;dept=MEDIA&amp;course=304&amp;section=4002&amp;dept=FILM&amp;course=360&amp;section=001&amp;dept=THEA&amp;course=340&amp;section=001&amp;getbooks=display+books"><i class="fa fa-book"></i><span class="pull-right"></span> Buy My Spring 2023 Textbooks </a><!-- end ngIf: link.Target === '_blank' -->
+    </div><!-- end ngRepeat: link in vm.myAcademicsLinks | orderBy:'Title' --><div ng-repeat="link in vm.myAcademicsLinks | orderBy:&#39;Title&#39;" class="ng-scope">
+        <!-- ngIf: link.Target === '_self' -->
+        <!-- ngIf: link.Target === '_blank' --><a ng-if="link.Target === &#39;_blank&#39;" ng-href="https://my.prod.boisestate.edu/student/academics" target="_blank" class="list-group-item ng-binding ng-scope" href="https://my.prod.boisestate.edu/student/academics"><i class="fa fa-mortar-board"></i><span class="pull-right"></span> Change My Major </a><!-- end ngIf: link.Target === '_blank' -->
+    </div><!-- end ngRepeat: link in vm.myAcademicsLinks | orderBy:'Title' --><div ng-repeat="link in vm.myAcademicsLinks | orderBy:&#39;Title&#39;" class="ng-scope">
+        <!-- ngIf: link.Target === '_self' -->
+        <!-- ngIf: link.Target === '_blank' --><a ng-if="link.Target === &#39;_blank&#39;" ng-href="https://www.boisestate.edu/classroomconcerns/" target="_blank" class="list-group-item ng-binding ng-scope" href="https://www.boisestate.edu/classroomconcerns/"><i class="fa fa-link"></i><span class="pull-right"></span> Classroom Concerns </a><!-- end ngIf: link.Target === '_blank' -->
+    </div><!-- end ngRepeat: link in vm.myAcademicsLinks | orderBy:'Title' --><div ng-repeat="link in vm.myAcademicsLinks | orderBy:&#39;Title&#39;" class="ng-scope">
+        <!-- ngIf: link.Target === '_self' -->
+        <!-- ngIf: link.Target === '_blank' --><a ng-if="link.Target === &#39;_blank&#39;" ng-href="https://clearinghouse-sso.prod.boisestate.edu/sso/login" target="_blank" class="list-group-item ng-binding ng-scope" href="https://clearinghouse-sso.prod.boisestate.edu/sso/login"><i class="fa fa-university"></i><span class="pull-right"></span> Enrollment Verification </a><!-- end ngIf: link.Target === '_blank' -->
+    </div><!-- end ngRepeat: link in vm.myAcademicsLinks | orderBy:'Title' --><div ng-repeat="link in vm.myAcademicsLinks | orderBy:&#39;Title&#39;" class="ng-scope">
+        <!-- ngIf: link.Target === '_self' --><a ng-if="link.Target === &#39;_self&#39;" ui-sref="student.gpaCalculator" class="list-group-item ng-binding ng-scope" href="https://my.boisestate.edu/#/student/gpa-calculator"><i class="fa fa-mortar-board"></i><span class="pull-right"></span> GPA Calculator </a><!-- end ngIf: link.Target === '_self' -->
+        <!-- ngIf: link.Target === '_blank' -->
+    </div><!-- end ngRepeat: link in vm.myAcademicsLinks | orderBy:'Title' --><div ng-repeat="link in vm.myAcademicsLinks | orderBy:&#39;Title&#39;" class="ng-scope">
+        <!-- ngIf: link.Target === '_self' --><a ng-if="link.Target === &#39;_self&#39;" ui-sref="student.grades" class="list-group-item ng-binding ng-scope" href="https://my.boisestate.edu/#/student/grades"><i class="fa fa-university"></i><span class="pull-right"></span> My Grades </a><!-- end ngIf: link.Target === '_self' -->
+        <!-- ngIf: link.Target === '_blank' -->
+    </div><!-- end ngRepeat: link in vm.myAcademicsLinks | orderBy:'Title' --><div ng-repeat="link in vm.myAcademicsLinks | orderBy:&#39;Title&#39;" class="ng-scope">
+        <!-- ngIf: link.Target === '_self' --><a ng-if="link.Target === &#39;_self&#39;" ui-sref="student.courseRepeats" class="list-group-item ng-binding ng-scope" href="https://my.boisestate.edu/#/student/course-repeats"><i class="fa fa-exclamation-circle"></i><span class="pull-right"></span> Repeat and Withdrawal Count </a><!-- end ngIf: link.Target === '_self' -->
+        <!-- ngIf: link.Target === '_blank' -->
+    </div><!-- end ngRepeat: link in vm.myAcademicsLinks | orderBy:'Title' --><div ng-repeat="link in vm.myAcademicsLinks | orderBy:&#39;Title&#39;" class="ng-scope">
+        <!-- ngIf: link.Target === '_self' -->
+        <!-- ngIf: link.Target === '_blank' --><a ng-if="link.Target === &#39;_blank&#39;" ng-href="https://www.boisestate.edu/aasc/academicsupportservices/" target="_blank" class="list-group-item ng-binding ng-scope" href="https://www.boisestate.edu/aasc/academicsupportservices/"><i class="fa fa-pencil"></i><span class="pull-right"></span> Tutoring </a><!-- end ngIf: link.Target === '_blank' -->
+    </div><!-- end ngRepeat: link in vm.myAcademicsLinks | orderBy:'Title' -->
+</div>
+</div>
+          </div><!-- end ngRepeat: tab in tabset.tabs --><div class="tab-pane ng-scope" ng-repeat="tab in tabset.tabs" ng-class="{active: tabset.active === tab.index}" uib-tab-content-transclude="tab">
+    
+              
+              <!-- uiView: tab-my-schedule --><div ui-view="tab-my-schedule" class="ng-scope"></div>
+          </div><!-- end ngRepeat: tab in tabset.tabs --><div class="tab-pane ng-scope" ng-repeat="tab in tabset.tabs" ng-class="{active: tabset.active === tab.index}" uib-tab-content-transclude="tab">
+    
+              
+              <!-- uiView: tab-my-account --><div ui-view="tab-my-account" class="ng-scope"></div>
+          </div><!-- end ngRepeat: tab in tabset.tabs -->
+  </div>
+</div>
+  </div>
+  <div class="col-md-4 col-xs-12">        
+    <!-- ngIf: vm.getEligibilityData() && (vm.eligibilityData.DisplayBanner || vm.eligibilityData.RegisteredEvent) -->
+    <div class="quick-links-directive ng-isolate-scope" default-items="vm.studentQuickLinks" default-items-name="Student" resource-items="vm.resources" student-mail="true" employee-mail="false">
+    <h3 class="oswald" data-toggle="tooltip" title="Services and resources"><i class="fa fa-link"></i> Services</h3>
+
+    <div class="search dropdown" uib-dropdown="" is-open="(vm.resourceSearch &amp;&amp; vm.resourceSearch.length)">
+        <label class="sr-only" for="resourceInput">Find Other Services</label>
+        <input type="text" ng-model="vm.resourceSearch" class="form-control ng-pristine ng-untouched ng-valid" id="resourceInput" placeholder="Search all services..." aria-invalid="false">
+        <div class="dropdown-menu" uib-dropdown-menu="" aria-labelledby="resourceInput">
+            <div class="list-group-item-divider"><strong>Other Services</strong></div>
+            <!-- ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://boisestate.bluera.com/boisestate" class="list-group-item ng-binding ng-scope" target="_blank" href="https://boisestate.bluera.com/boisestate">Course Evaluations</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://mail.google.com/a/boisestate.edu" class="list-group-item ng-binding ng-scope" target="_blank" href="https://mail.google.com/a/boisestate.edu">Google Workspace</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://mail.google.com/a/u.boisestate.edu" class="list-group-item ng-binding ng-scope" target="_blank" href="https://mail.google.com/a/u.boisestate.edu">BroncoMail (Google Workspace)</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://www.boisestate.edu/oit-myboisestate/authorized-user-access-directions/" class="list-group-item ng-binding ng-scope" target="_blank" href="https://www.boisestate.edu/oit-myboisestate/authorized-user-access-directions/">Parent or Authorized User Login Instructions</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://clearinghouse-sso.prod.boisestate.edu/sso/login" class="list-group-item ng-binding ng-scope" target="_blank" href="https://clearinghouse-sso.prod.boisestate.edu/sso/login">Enrollment Verification</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' --><a ng-if="resource.Target === &#39;_self&#39;" ui-sref="resources" class="list-group-item ng-binding ng-scope" href="https://my.boisestate.edu/#/resources">My Resources</a><!-- end ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' --><a ng-if="resource.Target === &#39;_self&#39;" ui-sref="myNews.headlines" class="list-group-item ng-binding ng-scope" href="https://my.boisestate.edu/#/my-news/headlines">My News</a><!-- end ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://broncosports.com" class="list-group-item ng-binding ng-scope" target="_blank" href="https://broncosports.com/">Athletics</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' --><a ng-if="resource.Target === &#39;_self&#39;" ui-sref="academicCalendar" class="list-group-item ng-binding ng-scope" href="https://my.boisestate.edu/#/academic-calendar">Academic Calendar</a><!-- end ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://www.boisestate.edu/social/" class="list-group-item ng-binding ng-scope" target="_blank" href="https://www.boisestate.edu/social/">Social</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' --><a ng-if="resource.Target === &#39;_self&#39;" ui-sref="courseSearch.subjects" class="list-group-item ng-binding ng-scope" href="https://my.boisestate.edu/#/course-search">Course Search</a><!-- end ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' --><a ng-if="resource.Target === &#39;_self&#39;" ui-sref="helpCenter" class="list-group-item ng-binding ng-scope" href="https://my.boisestate.edu/#/help-center">Help Center</a><!-- end ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://directory.boisestate.edu" class="list-group-item ng-binding ng-scope" target="_blank" href="https://directory.boisestate.edu/">Directory </a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://www.boisestate.edu/library/" class="list-group-item ng-binding ng-scope" target="_blank" href="https://www.boisestate.edu/library/">Library</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://engage.boisestate.edu/" class="list-group-item ng-binding ng-scope" target="_blank" href="https://engage.boisestate.edu/">Engage</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://cs-prod.boisestate.edu/psc/CPRD_25/EMPLOYEE/SA/c/NUI_FRAMEWORK.PT_LANDINGPAGE.GBL?Page=PT_LANDINGPAGE&amp;Action=U&amp;LP=BSU_SS_HOMEPAGE2" class="list-group-item ng-binding ng-scope" target="_blank" href="https://cs-prod.boisestate.edu/psc/CPRD_25/EMPLOYEE/SA/c/NUI_FRAMEWORK.PT_LANDINGPAGE.GBL?Page=PT_LANDINGPAGE&amp;Action=U&amp;LP=BSU_SS_HOMEPAGE2">Student Center</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://arbiteronline.com/" class="list-group-item ng-binding ng-scope" target="_blank" href="https://arbiteronline.com/">The Arbiter</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://www.boisestatebooks.com/" class="list-group-item ng-binding ng-scope" target="_blank" href="https://www.boisestatebooks.com/">Bookstore</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://my.prod.boisestate.edu/student/academics" class="list-group-item ng-binding ng-scope" target="_blank" href="https://my.prod.boisestate.edu/student/academics">Change My Major</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://web.boisestate.edu/estimator" class="list-group-item ng-binding ng-scope" target="_blank" href="https://web.boisestate.edu/estimator">Bottom Line Estimator</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://boisestatecanvas.instructure.com/login/openid_connect" class="list-group-item ng-binding ng-scope" target="_blank" href="https://boisestatecanvas.instructure.com/login/openid_connect">Canvas</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' --><a ng-if="resource.Target === &#39;_self&#39;" ui-sref="student.schedule" class="list-group-item ng-binding ng-scope" href="https://my.boisestate.edu/#/student/schedule">My Schedule</a><!-- end ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' --><a ng-if="resource.Target === &#39;_self&#39;" ui-sref="student.academics" class="list-group-item ng-binding ng-scope" href="https://my.boisestate.edu/#/student/academics">My Academics</a><!-- end ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' --><a ng-if="resource.Target === &#39;_self&#39;" ui-sref="student.account" class="list-group-item ng-binding ng-scope" href="https://my.boisestate.edu/#/student/account">My Account</a><!-- end ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://cs-prod.boisestate.edu/secure" class="list-group-item ng-binding ng-scope" target="_blank" href="https://cs-prod.boisestate.edu/secure">Campus Solutions (PeopleSoft)</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://www.boisestate.edu/reporting/" class="list-group-item ng-binding ng-scope" target="_blank" href="https://www.boisestate.edu/reporting/">Reporting Services</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://web.boisestate.edu/lms-middleware" class="list-group-item ng-binding ng-scope" target="_blank" href="https://web.boisestate.edu/lms-middleware">LMS Middleware</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://www.boisestate.edu/vpfa-university-forms/" class="list-group-item ng-binding ng-scope" target="_blank" href="https://www.boisestate.edu/vpfa-university-forms/">Forms &amp; Documents</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://www.boisestate.edu/index" class="list-group-item ng-binding ng-scope" target="_blank" href="https://www.boisestate.edu/index">A to Z Index</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://www.boisestate.edu/academics/" class="list-group-item ng-binding ng-scope" target="_blank" href="https://www.boisestate.edu/academics/">Academics &amp; Faculty Resources</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://www.boisestate.edu/ctl/" class="list-group-item ng-binding ng-scope" target="_blank" href="https://www.boisestate.edu/ctl/">Center for Teaching &amp; Learning</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://www.boisestate.edu/deanofstudents/student-conduct/" class="list-group-item ng-binding ng-scope" target="_blank" href="https://www.boisestate.edu/deanofstudents/student-conduct/">Student Conduct</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://www.boisestate.edu/operations/facilities/" class="list-group-item ng-binding ng-scope" target="_blank" href="https://www.boisestate.edu/operations/facilities/">Facilities (FOM)</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://www.boisestate.edu/oit/" class="list-group-item ng-binding ng-scope" target="_blank" href="https://www.boisestate.edu/oit/">Office of Information Technology</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://www.boisestate.edu/hrs/payroll/" class="list-group-item ng-binding ng-scope" target="_blank" href="https://www.boisestate.edu/hrs/payroll/">Payroll</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://www.boisestate.edu/vpfa-p2p/" class="list-group-item ng-binding ng-scope" target="_blank" href="https://www.boisestate.edu/vpfa-p2p/">Purchasing</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://boisestate.az1.qualtrics.com/ControlPanel/" class="list-group-item ng-binding ng-scope" target="_blank" href="https://boisestate.az1.qualtrics.com/ControlPanel/">Qualtrics</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://www.boisestate.edu/registrar/" class="list-group-item ng-binding ng-scope" target="_blank" href="https://www.boisestate.edu/registrar/">Registrar</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://www.boisestate.edu/studentunion/" class="list-group-item ng-binding ng-scope" target="_blank" href="https://www.boisestate.edu/studentunion/">Student Union Building</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://hrcs.boisestate.edu/psp/EPRD/EMPLOYEE/HRMS/s/WEBLIB_PTPP_SC.HOMEPAGE.FieldFormula.IScript_AppHP?scname=ADMN_BSU_SSO_1&amp;secondary=true&amp;fname=ADMN_F201209171341387389040164&amp;PORTALPARAM_PTCNAV=PT_PTPP_SCFNAV_BASEPAGE_SCR&amp;FolderPath=PORTAL_ROOT_OBJECT." class="list-group-item ng-binding ng-scope" target="_blank" href="https://hrcs.boisestate.edu/psp/EPRD/EMPLOYEE/HRMS/s/WEBLIB_PTPP_SC.HOMEPAGE.FieldFormula.IScript_AppHP?scname=ADMN_BSU_SSO_1&amp;secondary=true&amp;fname=ADMN_F201209171341387389040164&amp;PORTALPARAM_PTCNAV=PT_PTPP_SCFNAV_BASEPAGE_SCR&amp;FolderPath=PORTAL_ROOT_OBJECT.">Update Self-ID</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://www.boisestate.edu/getinvolved/" class="list-group-item ng-binding ng-scope" target="_blank" href="https://www.boisestate.edu/getinvolved/">Student Involvement and Leadership Center</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://www.boisestate.edu/admissions/" class="list-group-item ng-binding ng-scope" target="_blank" href="https://www.boisestate.edu/admissions/">Admission/Enrollment</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' --><a ng-if="resource.Target === &#39;_self&#39;" ui-sref="broncoAlert" class="list-group-item ng-binding ng-scope" href="https://my.boisestate.edu/#/bronco-alert">BroncoAlert</a><!-- end ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://www.boisestate.edu/infodesk/" class="list-group-item ng-binding ng-scope" target="_blank" href="https://www.boisestate.edu/infodesk/">Bronco Card</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://www.boisestate.edu/career/" class="list-group-item ng-binding ng-scope" target="_blank" href="https://www.boisestate.edu/career/">Student Jobs</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://maps.boisestate.edu/" class="list-group-item ng-binding ng-scope" target="_blank" href="https://maps.boisestate.edu/">Campus Maps</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://www.boisestate.edu/registrar-catalog/" class="list-group-item ng-binding ng-scope" target="_blank" href="https://www.boisestate.edu/registrar-catalog/">Catalogs</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://www.boisestate.edu/registrar/graduation/" class="list-group-item ng-binding ng-scope" target="_blank" href="https://www.boisestate.edu/registrar/graduation/">Commencement</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://www.boisestate.edu/academics-uf/" class="list-group-item ng-binding ng-scope" target="_blank" href="https://www.boisestate.edu/academics-uf/">University Foundations Curriculum</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://www.boisestate.edu/extendedstudies/" class="list-group-item ng-binding ng-scope" target="_blank" href="https://www.boisestate.edu/extendedstudies/">Extended Studies</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://www.boisestate.edu/housing/" class="list-group-item ng-binding ng-scope" target="_blank" href="https://www.boisestate.edu/housing/">Housing and Residence Life</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://www.boisestate.edu/healthservices/insurance-and-coverage/" class="list-group-item ng-binding ng-scope" target="_blank" href="https://www.boisestate.edu/healthservices/insurance-and-coverage/">Student Health Insurance</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://www.boisestate.edu/policy/" class="list-group-item ng-binding ng-scope" target="_blank" href="https://www.boisestate.edu/policy/">University Policies</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://www.boisestate.edu/publicsafety-transportation/" class="list-group-item ng-binding ng-scope" target="_blank" href="https://www.boisestate.edu/publicsafety-transportation/">Transportation and Parking Services</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://www.boisestate.edu/cpd/" class="list-group-item ng-binding ng-scope" target="_blank" href="https://www.boisestate.edu/cpd/">Center for Professional Development</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://www.boisestate.edu/communicationsandmarketing/creative/" class="list-group-item ng-binding ng-scope" target="_blank" href="https://www.boisestate.edu/communicationsandmarketing/creative/">Video Services</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://www.boisestate.edu/aasc/academicsupportservices/" class="list-group-item ng-binding ng-scope" target="_blank" href="https://www.boisestate.edu/aasc/academicsupportservices/">Tutoring</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://sites.google.com/a/boisestate.edu/bsu-admin-share-portal/excess-supplies-equipment" class="list-group-item ng-binding ng-scope" target="_blank" href="https://sites.google.com/a/boisestate.edu/bsu-admin-share-portal/excess-supplies-equipment">Admin Share Supply Portal</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://www.boisestate.edu/registrar/graduation/" class="list-group-item ng-binding ng-scope" target="_blank" href="https://www.boisestate.edu/registrar/graduation/">Graduation</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://www.boisestate.edu/financialaid/" class="list-group-item ng-binding ng-scope" target="_blank" href="https://www.boisestate.edu/financialaid/">Financial Aid</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://www.boisestate.edu/aasc/" class="list-group-item ng-binding ng-scope" target="_blank" href="https://www.boisestate.edu/aasc/">Advising &amp; Academic Support Center</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://weblogin.boisestate.edu/adfs/portal/updatepassword/" class="list-group-item ng-binding ng-scope" target="_blank" href="https://weblogin.boisestate.edu/adfs/portal/updatepassword/">Change Password</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://www.boisestate.edu/ecampus-center/" class="list-group-item ng-binding ng-scope" target="_blank" href="https://www.boisestate.edu/ecampus-center/">eCampus</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://www.boisestate.edu/scholarships/" class="list-group-item ng-binding ng-scope" target="_blank" href="https://www.boisestate.edu/scholarships/">Scholarships</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://www.boisestate.edu/career/" class="list-group-item ng-binding ng-scope" target="_blank" href="https://www.boisestate.edu/career/">Career Services</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://www.boisestate.edu/childrenscenter/" class="list-group-item ng-binding ng-scope" target="_blank" href="https://www.boisestate.edu/childrenscenter/">Children's Center</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://dineoncampus.com/boisestate" class="list-group-item ng-binding ng-scope" target="_blank" href="https://dineoncampus.com/boisestate">Boise State Dining</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://www.boisestate.edu/eac/" class="list-group-item ng-binding ng-scope" target="_blank" href="https://www.boisestate.edu/eac/">Educational Access Center</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://www.boisestate.edu/globaleducation-iss/" class="list-group-item ng-binding ng-scope" target="_blank" href="https://www.boisestate.edu/globaleducation-iss/">International Student Services</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://www.boisestate.edu/veterans/" class="list-group-item ng-binding ng-scope" target="_blank" href="https://www.boisestate.edu/veterans/">Veteran Services</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://www.boisestate.edu/genderequity/" class="list-group-item ng-binding ng-scope" target="_blank" href="https://www.boisestate.edu/genderequity/">Gender Equity Center</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://www.boisestate.edu/asbsu/" class="list-group-item ng-binding ng-scope" target="_blank" href="https://www.boisestate.edu/asbsu/">Associated Students of Boise State University</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://www.boisestate.edu/recreation/" class="list-group-item ng-binding ng-scope" target="_blank" href="https://www.boisestate.edu/recreation/">Campus Recreation</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://www.boisestate.edu/recreation/sports/clubsports/" class="list-group-item ng-binding ng-scope" target="_blank" href="https://www.boisestate.edu/recreation/sports/clubsports/">Club Sports</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://www.boisestate.edu/aasc/degree-tracker/" class="list-group-item ng-binding ng-scope" target="_blank" href="https://www.boisestate.edu/aasc/degree-tracker/">Degree Tracker</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' --><a ng-if="resource.Target === &#39;_self&#39;" ui-sref="student.gpaCalculator" class="list-group-item ng-binding ng-scope" href="https://my.boisestate.edu/#/student/gpa-calculator">GPA Calculator</a><!-- end ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://www.boisestate.edu/oit-myboisestate/" class="list-group-item ng-binding ng-scope" target="_blank" href="https://www.boisestate.edu/oit-myboisestate/">myBoiseState Help</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://www.boisestate.edu/sfs/" class="list-group-item ng-binding ng-scope" target="_blank" href="https://www.boisestate.edu/sfs/">Student Financial Services</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://www.boisestate.edu/deanofstudents/" class="list-group-item ng-binding ng-scope" target="_blank" href="https://www.boisestate.edu/deanofstudents/">Dean of Students</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://www.boisestate.edu/compliance/" class="list-group-item ng-binding ng-scope" target="_blank" href="https://www.boisestate.edu/compliance/">Institutional Compliance and Ethics</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://acluidaho.org/" class="list-group-item ng-binding ng-scope" target="_blank" href="https://acluidaho.org/">ACLU Idaho</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://www2.ed.gov/about/offices/list/ocr/index.html" class="list-group-item ng-binding ng-scope" target="_blank" href="https://www2.ed.gov/about/offices/list/ocr/index.html">Office for Civil Rights</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://www.boisestate.edu/aasc/academic-alert/" class="list-group-item ng-binding ng-scope" target="_blank" href="https://www.boisestate.edu/aasc/academic-alert/">Academic Alert</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://www.boisestate.edu/genderequity/support-services/get-help-for-sexual-assault/" class="list-group-item ng-binding ng-scope" target="_blank" href="https://www.boisestate.edu/genderequity/support-services/get-help-for-sexual-assault/">Sexual Harassment and Assault</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://www.boisestate.edu/englishsupport/" class="list-group-item ng-binding ng-scope" target="_blank" href="https://www.boisestate.edu/englishsupport/">English Language Support</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://math.boisestate.edu/mlc/" class="list-group-item ng-binding ng-scope" target="_blank" href="https://math.boisestate.edu/mlc/">Math Learning Center</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://www.boisestate.edu/servicelearning/" class="list-group-item ng-binding ng-scope" target="_blank" href="https://www.boisestate.edu/servicelearning/">Service-Learning</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://www.boisestate.edu/education-trs/" class="list-group-item ng-binding ng-scope" target="_blank" href="https://www.boisestate.edu/education-trs/">TRIO Rising Scholars</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://www.boisestate.edu/writingcenter/" class="list-group-item ng-binding ng-scope" target="_blank" href="https://www.boisestate.edu/writingcenter/">Writing Center</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://www.boisestate.edu/alumni/" class="list-group-item ng-binding ng-scope" target="_blank" href="https://www.boisestate.edu/alumni/">Alumni Association</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://www.boisestate.edu/eventservices/" class="list-group-item ng-binding ng-scope" target="_blank" href="https://www.boisestate.edu/eventservices/">Event Services</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://www.boisestate.edu/sub-games-center/" class="list-group-item ng-binding ng-scope" target="_blank" href="https://www.boisestate.edu/sub-games-center/">Games Center</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://www.boisestate.edu/sps-militaryscience/" class="list-group-item ng-binding ng-scope" target="_blank" href="https://www.boisestate.edu/sps-militaryscience/">ROTC</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://www.boisestate.edu/publicsafety-security/" class="list-group-item ng-binding ng-scope" target="_blank" href="https://www.boisestate.edu/publicsafety-security/">Campus Security and Police Services</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://www.boisestate.edu/care/" class="list-group-item ng-binding ng-scope" target="_blank" href="https://www.boisestate.edu/care/">CARE Program</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://www.boisestate.edu/hrs/benefits/employee-assistance-program/" class="list-group-item ng-binding ng-scope" target="_blank" href="https://www.boisestate.edu/hrs/benefits/employee-assistance-program/">Employee Assistance Program</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://www.facesofhopevictimcenter.org/" class="list-group-item ng-binding ng-scope" target="_blank" href="https://www.facesofhopevictimcenter.org/">Faces of Hope</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://www.boisestate.edu/healthservices/counseling/" class="list-group-item ng-binding ng-scope" target="_blank" href="https://www.boisestate.edu/healthservices/counseling/">University Health Services - Counseling</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://www.boisestate.edu/healthservices/medical/" class="list-group-item ng-binding ng-scope" target="_blank" href="https://www.boisestate.edu/healthservices/medical/">University Health Services - Medical</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://www.boisestate.edu/library/using-the-library/accessibility-resources/" class="list-group-item ng-binding ng-scope" target="_blank" href="https://www.boisestate.edu/library/using-the-library/accessibility-resources/">Albertsons Library Adaptive Technology</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://www.boisestate.edu/education-camp/" class="list-group-item ng-binding ng-scope" target="_blank" href="https://www.boisestate.edu/education-camp/">CAMP</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://www.boisestate.edu/education-cmeo/" class="list-group-item ng-binding ng-scope" target="_blank" href="https://www.boisestate.edu/education-cmeo/">CMEO</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://www.boisestate.edu/education-mcnair/" class="list-group-item ng-binding ng-scope" target="_blank" href="https://www.boisestate.edu/education-mcnair/">McNair Scholars Program</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://www.boisestate.edu/deanofstudents/student-support/impact-scholars/" class="list-group-item ng-binding ng-scope" target="_blank" href="https://www.boisestate.edu/deanofstudents/student-support/impact-scholars/">Impact Scholars</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://www.boisestate.edu/globaleducation-iep/" class="list-group-item ng-binding ng-scope" target="_blank" href="https://www.boisestate.edu/globaleducation-iep/">Intensive English Program</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://www.boisestate.edu/vpfa-university-forms/files/2019/08/goodwillpayrolldeduction.pdf" class="list-group-item ng-binding ng-scope" target="_blank" href="https://www.boisestate.edu/vpfa-university-forms/files/2019/08/goodwillpayrolldeduction.pdf">ACE Goodwill Program</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://www.boisestate.edu/academics-facultyombuds/" class="list-group-item ng-binding ng-scope" target="_blank" href="https://www.boisestate.edu/academics-facultyombuds/">Faculty Ombuds</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://www.boisestate.edu/operations/ehss/" class="list-group-item ng-binding ng-scope" target="_blank" href="https://www.boisestate.edu/operations/ehss/">Environmental Health, Safety and Sustainability</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://www.boisestate.edu/rmi/" class="list-group-item ng-binding ng-scope" target="_blank" href="https://www.boisestate.edu/rmi/">Risk Management and Insurance</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://www.boisestate.edu/healthservices/wellness/" class="list-group-item ng-binding ng-scope" target="_blank" href="https://www.boisestate.edu/healthservices/wellness/">University Health Services - Wellness</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://www.yourhealthidaho.org/" class="list-group-item ng-binding ng-scope" target="_blank" href="https://www.yourhealthidaho.org/">Your Health Idaho</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://www.boisestate.edu/radar/" class="list-group-item ng-binding ng-scope" target="_blank" href="https://www.boisestate.edu/radar/">Idaho RADAR Center</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://www.boisestate.edu/oit/googleworkspace/maildrop-accounts/" class="list-group-item ng-binding ng-scope" target="_blank" href="https://www.boisestate.edu/oit/googleworkspace/maildrop-accounts/">Maildrop Accounts</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://www.boisestate.edu/hrs/benefits/" class="list-group-item ng-binding ng-scope" target="_blank" href="https://www.boisestate.edu/hrs/benefits/">Benefits</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://engage.boisestate.edu/organization/psa/" class="list-group-item ng-binding ng-scope" target="_blank" href="https://engage.boisestate.edu/organization/psa/">Professional Staff Association</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://engage.boisestate.edu/organization/association-of-classified-employees" class="list-group-item ng-binding ng-scope" target="_blank" href="https://engage.boisestate.edu/organization/association-of-classified-employees">Association of Classified Employees</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://www.boisestate.edu/academics-facultysenate/" class="list-group-item ng-binding ng-scope" target="_blank" href="https://www.boisestate.edu/academics-facultysenate/">Faculty Senate</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://www.boisestate.edu/oit/services/mail/mail-stop-codes-by-number/" class="list-group-item ng-binding ng-scope" target="_blank" href="https://www.boisestate.edu/oit/services/mail/mail-stop-codes-by-number/">Mail Stops</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://directory.boisestate.edu/" class="list-group-item ng-binding ng-scope" target="_blank" href="https://directory.boisestate.edu/">Searchable Faculty and Staff Directory</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://shuttle.boisestate.edu/routes" class="list-group-item ng-binding ng-scope" target="_blank" href="https://shuttle.boisestate.edu/routes">Shuttle Tracker</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://www.boisestate.edu/testing/" class="list-group-item ng-binding ng-scope" target="_blank" href="https://www.boisestate.edu/testing/">Testing Center</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://travel-auth.boisestate.edu/" class="list-group-item ng-binding ng-scope" target="_blank" href="https://travel-auth.boisestate.edu/">Travel Authorization</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://majors.boisestate.edu/" class="list-group-item ng-binding ng-scope" target="_blank" href="https://majors.boisestate.edu/">Major Finder</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://www.boisestate.edu/ie-faculty180/" class="list-group-item ng-binding ng-scope" target="_blank" href="https://www.boisestate.edu/ie-faculty180/">Faculty180</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://www.boisestate.edu/vpfa-ufs-training/" class="list-group-item ng-binding ng-scope" target="_blank" href="https://www.boisestate.edu/vpfa-ufs-training/">Bronco Hub Training Portal</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://www.boisestate.edu/events/" class="list-group-item ng-binding ng-scope" target="_blank" href="https://www.boisestate.edu/events/">Events</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' --><a ng-if="resource.Target === &#39;_self&#39;" ui-sref="snake" class="list-group-item ng-binding ng-scope" href="https://my.boisestate.edu/#/snake">Snake</a><!-- end ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://www.boisestate.edu/registrar-help/aar-2/" class="list-group-item ng-binding ng-scope" target="_blank" href="https://www.boisestate.edu/registrar-help/aar-2/">AAR (Academic Advising Report)</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://www.boisestate.edu/oit-pmo/current-projects/" class="list-group-item ng-binding ng-scope" target="_blank" href="https://www.boisestate.edu/oit-pmo/current-projects/">Project Management Office Project Reporting Site</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://www.boisestate.edu/vpfa-travel/" class="list-group-item ng-binding ng-scope" target="_blank" href="https://www.boisestate.edu/vpfa-travel/">Employee Travel and Expense Reimbursement Services</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="http://www.morrisoncenter.com/" class="list-group-item ng-binding ng-scope" target="_blank" href="http://www.morrisoncenter.com/">Morrison Center</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://eboi.fa.us2.oraclecloud.com/homePage/faces/FuseWelcome" class="list-group-item ng-binding ng-scope" target="_blank" href="https://eboi.fa.us2.oraclecloud.com/homePage/faces/FuseWelcome">Bronco Hub</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://www.boisestate.edu/globaleducation-glo/" class="list-group-item ng-binding ng-scope" target="_blank" href="https://www.boisestate.edu/globaleducation-glo/">Study Abroad</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://www.boisestate.edu/beyondthemajor/" class="list-group-item ng-binding ng-scope" target="_blank" href="https://www.boisestate.edu/beyondthemajor/">Beyond the Major</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://www.boisestate.edu/publicsafety-emergencymanagement/" class="list-group-item ng-binding ng-scope" target="_blank" href="https://www.boisestate.edu/publicsafety-emergencymanagement/">Emergency Management</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://www.boisestate.edu/hrs/" class="list-group-item ng-binding ng-scope" target="_blank" href="https://www.boisestate.edu/hrs/">Human Resource Services Website</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://ecm.boisestate.edu/experience/" class="list-group-item ng-binding ng-scope" target="_blank" href="https://ecm.boisestate.edu/experience/">Perceptive Experience</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://bsuoaacprod-boisestate1.analytics.ocp.oraclecloud.com/dv/ui?pageid=home" class="list-group-item ng-binding ng-scope" target="_blank" href="https://bsuoaacprod-boisestate1.analytics.ocp.oraclecloud.com/dv/ui?pageid=home">Oracle Reporting</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://www.boisestate.edu/recreation/sports/intramuralsports/" class="list-group-item ng-binding ng-scope" target="_blank" href="https://www.boisestate.edu/recreation/sports/intramuralsports/">Intramural Sports</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://www.boisestate.edu/continuous-improvement/" class="list-group-item ng-binding ng-scope" target="_blank" href="https://www.boisestate.edu/continuous-improvement/">Office of Continuous Improvement (OCI)</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://www.boisestate.edu/login" class="list-group-item ng-binding ng-scope" target="_blank" href="https://www.boisestate.edu/login">WordPress (New AWS Environment)</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://www.boisestate.edu/oit/print-at-boise-state/broncoprint/" class="list-group-item ng-binding ng-scope" target="_blank" href="https://www.boisestate.edu/oit/print-at-boise-state/broncoprint/">Bronco Print</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://www.boisestate.edu/reporting/" class="list-group-item ng-binding ng-scope" target="_blank" href="https://www.boisestate.edu/reporting/">Data Warehouse</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://www.boisestate.edu/oer/" class="list-group-item ng-binding ng-scope" target="_blank" href="https://www.boisestate.edu/oer/">OER (Open Educational Resources)</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://www.boisestate.edu/oit-learning/classroom/iclicker/" class="list-group-item ng-binding ng-scope" target="_blank" href="https://www.boisestate.edu/oit-learning/classroom/iclicker/">iClicker</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://broncosports.com/sports/2018/5/30/tickets-home.aspx" class="list-group-item ng-binding ng-scope" target="_blank" href="https://broncosports.com/sports/2018/5/30/tickets-home.aspx">Athletics Tickets</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://www.boisestate.edu/thunder/" class="list-group-item ng-binding ng-scope" target="_blank" href="https://www.boisestate.edu/thunder/">Blue Thunder Marching Band</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="http://www.boisejazzsociety.org/" class="list-group-item ng-binding ng-scope" target="_blank" href="http://www.boisejazzsociety.org/">Boise Jazz Society</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://www.boisestate.edu/community-outreach/" class="list-group-item ng-binding ng-scope" target="_blank" href="https://www.boisestate.edu/community-outreach/">Community Educational Outreach</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://www.boisestatepublicradio.org/#stream/0" class="list-group-item ng-binding ng-scope" target="_blank" href="https://www.boisestatepublicradio.org/#stream/0">Boise State Public Radio</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://www.boisestate.edu/generalcounsel/copyright/" class="list-group-item ng-binding ng-scope" target="_blank" href="https://www.boisestate.edu/generalcounsel/copyright/">Copyright Information</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://www.boisestate.edu/clc/" class="list-group-item ng-binding ng-scope" target="_blank" href="https://www.boisestate.edu/clc/">Cycle Learning Center</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://www.boisestate.edu/esports/" class="list-group-item ng-binding ng-scope" target="_blank" href="https://www.boisestate.edu/esports/">eSports</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://www.boisestate.edu/library-makerlab/" class="list-group-item ng-binding ng-scope" target="_blank" href="https://www.boisestate.edu/library-makerlab/">MakerLab</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://www.boisestate.edu/vpfa-notaries-public/" class="list-group-item ng-binding ng-scope" target="_blank" href="https://www.boisestate.edu/vpfa-notaries-public/">Notaries Public</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://support.boisestate.edu/" class="list-group-item ng-binding ng-scope" target="_blank" href="https://support.boisestate.edu/">Help Desk Self Service</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://www.boisestate.edu/deanofstudents/student-support/food-help/food-pantry/" class="list-group-item ng-binding ng-scope" target="_blank" href="https://www.boisestate.edu/deanofstudents/student-support/food-help/food-pantry/">Campus Food Pantry</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://www.boisestate.edu/career/handshake-students-alumni/" class="list-group-item ng-binding ng-scope" target="_blank" href="https://www.boisestate.edu/career/handshake-students-alumni/">Student Employment (Handshake)</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://www.boisestate.edu/deanofstudents/student-support/financial-help/" class="list-group-item ng-binding ng-scope" target="_blank" href="https://www.boisestate.edu/deanofstudents/student-support/financial-help/">Student Emergency Fund</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://www.boisestate.edu/deanofstudents/student-support/financial-help/steven-nelson-memorial-fund/" class="list-group-item ng-binding ng-scope" target="_blank" href="https://www.boisestate.edu/deanofstudents/student-support/financial-help/steven-nelson-memorial-fund/">Steven Nelson Memorial LGBTQ Fund</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://maps.boisestate.edu/?id=715#!t/2097:1?ct/33178,8947,8943,0" class="list-group-item ng-binding ng-scope" target="_blank" href="https://maps.boisestate.edu/?id=715#!t/2097:1?ct/33178,8947,8943,0">Campus Safety Map</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://www.valleyregionaltransit.org" class="list-group-item ng-binding ng-scope" target="_blank" href="https://www.valleyregionaltransit.org/">City Bus Routes</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://www.boisestate.edu/rcs/" class="list-group-item ng-binding ng-scope" target="_blank" href="https://www.boisestate.edu/rcs/">Research Computing Support</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://boisestateproduction.service-now.com/" class="list-group-item ng-binding ng-scope" target="_blank" href="https://boisestateproduction.service-now.com/">ServiceNow</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://www.boisestate.edu/webguide" class="list-group-item ng-binding ng-scope" target="_blank" href="https://www.boisestate.edu/webguide">Webguide</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://www.boisestate.edu/ie/" class="list-group-item ng-binding ng-scope" target="_blank" href="https://www.boisestate.edu/ie/">Institutional Effectiveness</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://www.boisestate.edu/oit/services/mail/" class="list-group-item ng-binding ng-scope" target="_blank" href="https://www.boisestate.edu/oit/services/mail/">Mail Services</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://rcchat.boisestate.edu/" class="list-group-item ng-binding ng-scope" target="_blank" href="https://rcchat.boisestate.edu/">Help Desk Chat</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://www.boisestate.edu/student-life/" class="list-group-item ng-binding ng-scope" target="_blank" href="https://www.boisestate.edu/student-life/">Student Life</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://www.boisestate.edu/oit-pmo/software-review-requests/" class="list-group-item ng-binding ng-scope" target="_blank" href="https://www.boisestate.edu/oit-pmo/software-review-requests/">Software Review Requests</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://www.boisestate.edu/flex/ta-submission/" class="list-group-item ng-binding ng-scope" target="_blank" href="https://www.boisestate.edu/flex/ta-submission/">Military Tuition Assistance</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://boisestate.givepulse.com/" class="list-group-item ng-binding ng-scope" target="_blank" href="https://boisestate.givepulse.com/">Bronco Impacts (GivePulse)</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://www.boisestate.edu/diningservices/dining-plan-options/" class="list-group-item ng-binding ng-scope" target="_blank" href="https://www.boisestate.edu/diningservices/dining-plan-options/">Meal Plans</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://www.extramilearena.com/" class="list-group-item ng-binding ng-scope" target="_blank" href="https://www.extramilearena.com/">ExtraMile Arena</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://www.boisestate.edu/oit/report-cellular-service-issues-at-boise-state-university/" class="list-group-item ng-binding ng-scope" target="_blank" href="https://www.boisestate.edu/oit/report-cellular-service-issues-at-boise-state-university/">Report Poor Cell Phone Reception on Campus</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="http://boisestate.hosted.panopto.com/" class="list-group-item ng-binding ng-scope" target="_blank" href="http://boisestate.hosted.panopto.com/">Panopto Video</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://broncolearn.boisestate.edu/" class="list-group-item ng-binding ng-scope" target="_blank" href="https://broncolearn.boisestate.edu/">Bronco Learn</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://boisestate.zoom.us/signin" class="list-group-item ng-binding ng-scope" target="_blank" href="https://boisestate.zoom.us/signin">Zoom</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://www.boisestate.edu/publichealth/" class="list-group-item ng-binding ng-scope" target="_blank" href="https://www.boisestate.edu/publichealth/">COVID Updates</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="http://smartsheet.boisestate.edu/" class="list-group-item ng-binding ng-scope" target="_blank" href="http://smartsheet.boisestate.edu/">Smartsheet</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' --><a ng-if="resource.Target === &#39;_self&#39;" ui-sref="duoMFA" class="list-group-item ng-binding ng-scope" href="https://my.boisestate.edu/#/duomfa">Duo Multi-Factor Authentication</a><!-- end ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://boisestate.dc4.pageuppeople.com/beta/dashboard?" class="list-group-item ng-binding ng-scope" target="_blank" href="https://boisestate.dc4.pageuppeople.com/beta/dashboard?">PageUp</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://boisestate.kuali.co/" class="list-group-item ng-binding ng-scope" target="_blank" href="https://boisestate.kuali.co/">Kuali Curriculum Management</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://middleware.boisestate.edu" class="list-group-item ng-binding ng-scope" target="_blank" href="https://middleware.boisestate.edu/">Middleware 2.0</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://boisestate.starrezhousing.com/StarRezPortalX" class="list-group-item ng-binding ng-scope" target="_blank" href="https://boisestate.starrezhousing.com/StarRezPortalX">Housing Portal</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://www.boisestate.edu/student-equity/" class="list-group-item ng-binding ng-scope" target="_blank" href="https://www.boisestate.edu/student-equity/">Student Equity</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://www.boisestate.edu/publichealth/vaccination-clinic/" class="list-group-item ng-binding ng-scope" target="_blank" href="https://www.boisestate.edu/publichealth/vaccination-clinic/">Boise State Vaccination Clinic</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://infoed.boisestate.edu/login.asp" class="list-group-item ng-binding ng-scope" target="_blank" href="https://infoed.boisestate.edu/login.asp">InfoEd</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://www.boisestate.edu/jobs/" class="list-group-item ng-binding ng-scope" target="_blank" href="https://www.boisestate.edu/jobs/">Boise State Career Opportunities</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://www.boisestate.edu/education-trioteacherprep/" class="list-group-item ng-binding ng-scope" target="_blank" href="https://www.boisestate.edu/education-trioteacherprep/">TRIO Teacher Prep</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://www.boisestate.edu/classroomconcerns/" class="list-group-item ng-binding ng-scope" target="_blank" href="https://www.boisestate.edu/classroomconcerns/">Classroom Concerns</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://hrcs.boisestate.edu/psp/EPRD/?cmd=login" class="list-group-item ng-binding ng-scope" target="_blank" href="https://hrcs.boisestate.edu/psp/EPRD/?cmd=login">PeopleSoft HR</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://www.boisestate.edu/education-triostem-sss/" class="list-group-item ng-binding ng-scope" target="_blank" href="https://www.boisestate.edu/education-triostem-sss/">TRIO STEM Scholars</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://login.monsido.com/sso/saml/69d7a2a8-baaa-4fa0-86a5-ba705f4f4207/login" class="list-group-item ng-binding ng-scope" target="_blank" href="https://login.monsido.com/sso/saml/69d7a2a8-baaa-4fa0-86a5-ba705f4f4207/login">Monsido</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://mcy4vy3rrprts74r6hs9fk0cdrwq.login.exacttarget.com/sso/e948153c2d20403d361e6f6a23512f294b272c3a1a2f2a4d332027402c31416e20304162244026367b4728375229263147623156353620487877127075640d7d7d" class="list-group-item ng-binding ng-scope" target="_blank" href="https://mcy4vy3rrprts74r6hs9fk0cdrwq.login.exacttarget.com/sso/e948153c2d20403d361e6f6a23512f294b272c3a1a2f2a4d332027402c31416e20304162244026367b4728375229263147623156353620487877127075640d7d7d">Salesforce Marketing Cloud</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://dashboard.pantheon.io/sso" class="list-group-item ng-binding ng-scope" target="_blank" href="https://dashboard.pantheon.io/sso">Pantheon</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) --><div ng-repeat="resource in vm.results = (resourceItems | filter:vm.resourceSearch)" class="ng-scope">
+                <!-- ngIf: resource.Target === '_blank' --><a ng-if="resource.Target === &#39;_blank&#39;" ng-href="https://www.boisestate.edu/events/" class="list-group-item ng-binding ng-scope" target="_blank" href="https://www.boisestate.edu/events/">University Events Calendar</a><!-- end ngIf: resource.Target === '_blank' -->
+                <!-- ngIf: resource.Target === '_self' -->
+            </div><!-- end ngRepeat: resource in vm.results = (resourceItems | filter:vm.resourceSearch) -->
+            <!-- ngIf: !vm.results.length -->
+        </div>
+    </div>
+    
+    <div class="list-group">
+        <!-- ngRepeat: item in vm.extraRoleSpecificMenuItems -->
+    </div>
+
+
+    <div class="list-group">
+        <!-- ngRepeat: item in vm.userMenuItems --><div ng-repeat="item in vm.userMenuItems" class="ng-scope" style="">
+            <!-- ngIf: ((item.Name === 'BRONCOMAIL' || item.Name === 'GOOGLEAPPS')) --><a ng-if="((item.Name === &#39;BRONCOMAIL&#39; || item.Name === &#39;GOOGLEAPPS&#39;))" ng-href="https://mail.google.com/a/u.boisestate.edu" class="list-group-item ng-binding ng-scope" target="_blank" href="https://mail.google.com/a/u.boisestate.edu">
+                BroncoMail (Google Workspace)
+                <!-- ngIf: vm.unreadMailCount !== -1 --><span ng-if="vm.unreadMailCount !== -1" class="badge ng-binding ng-scope">0</span><!-- end ngIf: vm.unreadMailCount !== -1 -->
+                <!-- ngIf: vm.unreadMailCount !== -1 --><span ng-if="vm.unreadMailCount !== -1" class="sr-only sr-only-focusable ng-binding ng-scope">0 unread emails</span><!-- end ngIf: vm.unreadMailCount !== -1 -->
+                <!-- ngIf: vm.unreadMailCount < 0 -->
+                <!-- ngIf: vm.unreadMailCount < 0 -->
+            </a><!-- end ngIf: ((item.Name === 'BRONCOMAIL' || item.Name === 'GOOGLEAPPS')) -->
+            <!-- ngIf: item.Target === '_blank' && (item.Name !== 'BRONCOMAIL' && item.Name !== 'GOOGLEAPPS') -->
+            <!-- ngIf: item.Target === '_self' -->
+        </div><!-- end ngRepeat: item in vm.userMenuItems --><div ng-repeat="item in vm.userMenuItems" class="ng-scope">
+            <!-- ngIf: ((item.Name === 'BRONCOMAIL' || item.Name === 'GOOGLEAPPS')) -->
+            <!-- ngIf: item.Target === '_blank' && (item.Name !== 'BRONCOMAIL' && item.Name !== 'GOOGLEAPPS') --><a ng-if="item.Target === &#39;_blank&#39; &amp;&amp; (item.Name !== &#39;BRONCOMAIL&#39; &amp;&amp; item.Name !== &#39;GOOGLEAPPS&#39;)" ng-href="https://boisestatecanvas.instructure.com/login/openid_connect" target="_blank" class="list-group-item ng-binding ng-scope" href="https://boisestatecanvas.instructure.com/login/openid_connect">
+                Canvas
+            </a><!-- end ngIf: item.Target === '_blank' && (item.Name !== 'BRONCOMAIL' && item.Name !== 'GOOGLEAPPS') -->
+            <!-- ngIf: item.Target === '_self' -->
+        </div><!-- end ngRepeat: item in vm.userMenuItems --><div ng-repeat="item in vm.userMenuItems" class="ng-scope">
+            <!-- ngIf: ((item.Name === 'BRONCOMAIL' || item.Name === 'GOOGLEAPPS')) -->
+            <!-- ngIf: item.Target === '_blank' && (item.Name !== 'BRONCOMAIL' && item.Name !== 'GOOGLEAPPS') --><a ng-if="item.Target === &#39;_blank&#39; &amp;&amp; (item.Name !== &#39;BRONCOMAIL&#39; &amp;&amp; item.Name !== &#39;GOOGLEAPPS&#39;)" ng-href="https://cs-prod.boisestate.edu/psc/CPRD_25/EMPLOYEE/SA/c/NUI_FRAMEWORK.PT_LANDINGPAGE.GBL?Page=PT_LANDINGPAGE&amp;Action=U&amp;LP=BSU_SS_HOMEPAGE2" target="_blank" class="list-group-item ng-binding ng-scope" href="https://cs-prod.boisestate.edu/psc/CPRD_25/EMPLOYEE/SA/c/NUI_FRAMEWORK.PT_LANDINGPAGE.GBL?Page=PT_LANDINGPAGE&amp;Action=U&amp;LP=BSU_SS_HOMEPAGE2">
+                Student Center
+            </a><!-- end ngIf: item.Target === '_blank' && (item.Name !== 'BRONCOMAIL' && item.Name !== 'GOOGLEAPPS') -->
+            <!-- ngIf: item.Target === '_self' -->
+        </div><!-- end ngRepeat: item in vm.userMenuItems --><div ng-repeat="item in vm.userMenuItems" class="ng-scope">
+            <!-- ngIf: ((item.Name === 'BRONCOMAIL' || item.Name === 'GOOGLEAPPS')) -->
+            <!-- ngIf: item.Target === '_blank' && (item.Name !== 'BRONCOMAIL' && item.Name !== 'GOOGLEAPPS') --><a ng-if="item.Target === &#39;_blank&#39; &amp;&amp; (item.Name !== &#39;BRONCOMAIL&#39; &amp;&amp; item.Name !== &#39;GOOGLEAPPS&#39;)" ng-href="https://engage.boisestate.edu/" target="_blank" class="list-group-item ng-binding ng-scope" href="https://engage.boisestate.edu/">
+                Engage
+            </a><!-- end ngIf: item.Target === '_blank' && (item.Name !== 'BRONCOMAIL' && item.Name !== 'GOOGLEAPPS') -->
+            <!-- ngIf: item.Target === '_self' -->
+        </div><!-- end ngRepeat: item in vm.userMenuItems --><div ng-repeat="item in vm.userMenuItems" class="ng-scope">
+            <!-- ngIf: ((item.Name === 'BRONCOMAIL' || item.Name === 'GOOGLEAPPS')) -->
+            <!-- ngIf: item.Target === '_blank' && (item.Name !== 'BRONCOMAIL' && item.Name !== 'GOOGLEAPPS') --><a ng-if="item.Target === &#39;_blank&#39; &amp;&amp; (item.Name !== &#39;BRONCOMAIL&#39; &amp;&amp; item.Name !== &#39;GOOGLEAPPS&#39;)" ng-href="https://www.boisestate.edu/library/" target="_blank" class="list-group-item ng-binding ng-scope" href="https://www.boisestate.edu/library/">
+                Library
+            </a><!-- end ngIf: item.Target === '_blank' && (item.Name !== 'BRONCOMAIL' && item.Name !== 'GOOGLEAPPS') -->
+            <!-- ngIf: item.Target === '_self' -->
+        </div><!-- end ngRepeat: item in vm.userMenuItems -->
+    </div>
+    <!-- ngIf: defaultItemsName --><a uib-tooltip="Add or edit services." ng-if="defaultItemsName" class="edit-services ng-binding ng-scope" tooltip-popup-delay="500" ui-sref="resources({ view: &#39;Student&#39; })" href="https://my.boisestate.edu/#/resources?view=Student">
+        <i class="fa fa-edit"></i> Edit Student Services
+    </a><!-- end ngIf: defaultItemsName -->
+
+</div>
+    <div class="campus-update-directive ng-isolate-scope" title="Campus News" articles="vm.studentArticles" limit="2">
+    <h2 class="oswald pull-left ng-binding"><i class="fa fa-file-o"></i> Campus News</h2>
+    <!-- ngIf: addCustomizeNewsButton === 'true' -->
+    <div class="clearfix"></div>
+    <!-- ngRepeat: article in articles | limitTo:limit --><div role="article" ng-repeat="article in articles | limitTo:limit" class="media ng-scope" style="">
+        <div class="media-body">
+            <div style="margin-top: 5px;">
+                <!-- ngIf: showImages === 'true' && article.Image !== '' -->
+                <h4 class="media-heading"><a ng-href="https://www.boisestate.edu/student-life/5-1-2-things-about-seasonal-affective-disorder/" target="_blank" class="ng-binding" href="https://www.boisestate.edu/student-life/5-1-2-things-about-seasonal-affective-disorder/">5 1/2 Things About Seasonal Affective Disorder</a></h4>
+                <p ng-bind-html="article.Description" class="ng-binding">February can feel like a dull month. When days are shorter and colder, the sky...</p>
+            </div>
+        </div>
+    </div><!-- end ngRepeat: article in articles | limitTo:limit --><div role="article" ng-repeat="article in articles | limitTo:limit" class="media ng-scope">
+        <div class="media-body">
+            <div style="margin-top: 5px;">
+                <!-- ngIf: showImages === 'true' && article.Image !== '' -->
+                <h4 class="media-heading"><a ng-href="https://www.boisestate.edu/student-life/your-unofficial-guide-to-mastering-the-career-fair/" target="_blank" class="ng-binding" href="https://www.boisestate.edu/student-life/your-unofficial-guide-to-mastering-the-career-fair/">Your Unofficial Guide to Mastering the Career Fair</a></h4>
+                <p ng-bind-html="article.Description" class="ng-binding">Have you ever been in a ballroom full of employers who are looking to hire...</p>
+            </div>
+        </div>
+    </div><!-- end ngRepeat: article in articles | limitTo:limit -->
+</div>
+    <button id="feedbackButton" ng-click="vm.openModal()" class="btn btn-block btn-warning ng-isolate-scope"><i class="fa fa-comment-o"></i>  Feedback</button>
+  </div>
+</section>
+</div>
+    <!--Footer-->
+    <!-- ngIf: app.state.current.name !== 'splash' --><footer ng-if="app.state.current.name !== &#39;splash&#39;" class="container ng-scope">
+        <hr>
+        <p>
+            myBoiseState v2.8.2
+            <a style="float:right; color: #0169a4;" ui-sref="accessibility" href="https://my.boisestate.edu/#/accessibility">Accessibility Statement</a>
+        </p>
+    </footer><!-- end ngIf: app.state.current.name !== 'splash' -->
+    <!-- compiled CSS -->
+    <link rel="stylesheet" type="text/css" href="./HTML Assignment-2_files/loading-bar.css">
+    <link rel="stylesheet" type="text/css" href="./HTML Assignment-2_files/angular-csp.css">
+    <link rel="stylesheet" type="text/css" href="./HTML Assignment-2_files/font-awesome.css">
+    <link rel="stylesheet" type="text/css" href="./HTML Assignment-2_files/angular-toastr.css">
+    <link rel="stylesheet" type="text/css" href="./HTML Assignment-2_files/ng-tags-input.css">
+    <link rel="stylesheet" type="text/css" href="./HTML Assignment-2_files/ng-tags-input.bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="./HTML Assignment-2_files/ui-bootstrap-csp.css">
+    <link rel="stylesheet" type="text/css" href="./HTML Assignment-2_files/myBoiseState-2.8.2.css">
+
+    <script async="" src="./HTML Assignment-2_files/analytics.js.download"></script><script type="text/javascript" defer="" src="./HTML Assignment-2_files/browser-update-init.min.js.download"></script>
+    <!-- compiled JavaScript -->
+    <script type="text/javascript" src="./HTML Assignment-2_files/myBoiseState-2.8.2.js.download"></script>
+
+    <!--Google Analytics-->
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+                  m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+        ga('create', 'UA-1250107-2', 'auto');
+    </script>
+
+
+<script type="text/javascript" src="./HTML Assignment-2_files/update.min.js.download"></script></body></html>
